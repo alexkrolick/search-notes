@@ -1,0 +1,47 @@
+{
+  "name": "search-notes",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "bin": {
+    "search-notes": "lib/cli.js"
+  },
+  "engines": {
+    "node": "^14.9.0 || ^12.18.3"
+  },
+  "scripts": {
+    "test": "node lib -d test/notes scotland"
+  },
+  "author": "Alex Krolick <alexander.krolick+npm@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "lodash": "^4.17.20",
+    "lunr": "^2.3.9",
+    "remarkable": "^2.0.1",
+    "remarkable-meta": "^1.0.1",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "doctoc": "^1.4.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.1.1"
+  },
+  "lint-staged": {
+    "README.md": [
+      "doctoc --github --notitle"
+    ],
+    "*": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

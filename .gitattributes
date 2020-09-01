@@ -1,0 +1,2 @@
+# Treat search indices as binary; don't try to merge them as text
+**/search.json -diff
