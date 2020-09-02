@@ -1,5 +1,7 @@
 # search-notes
 
+![Node.js Package](https://github.com/alexkrolick/search-notes/workflows/Node.js%20Package/badge.svg)
+
 A search index and more for your markdown notes.
 
 ```sh
