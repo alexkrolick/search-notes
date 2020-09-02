@@ -85,7 +85,7 @@ Hashtags are #indexed so you can #query them
 ```
 
 ```sh
-search-notes tag:query
+search-notes tags:something
 ```
 
 ## CLI
