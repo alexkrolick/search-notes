@@ -1,6 +1,6 @@
 {
   "name": "search-notes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "lib/index.js",
   "directories": {
@@ -43,5 +43,13 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexkrolick/search-notes"
+  },
+  "bugs": {
+    "url": "https://github.com/alexkrolick/search-notes/issues"
+  },
+  "homepage": "https://github.com/alexkrolick/search-notes#readme"
 }
