@@ -31,6 +31,7 @@ Search took 0.017599736 seconds
 - [Features](#features)
   - [Metadata search](#metadata-search)
   - [Tag search](#tag-search)
+  - [Link search](#link-search)
 - [CLI](#cli)
   - [Caching the search index](#caching-the-search-index)
     - [Without Cache](#without-cache)
@@ -88,6 +89,22 @@ Hashtags are #indexed so you can #query them
 search-notes tags:something
 ```
 
+### Link search
+
+Outgoing links are indexed, so you can look up "backlinks" (incoming links) by searching what links to a file. You can look up any link this way, not just local documents. E.g., you can find all documents that link to Wikipedia.
+
+```md
+# Find all documents that link to a page
+
+search-notes -d test/notes "linksTo:SomePage"
+```
+
+```md
+# See all links
+
+search-notes -d test/notes "linksTo:\*"
+```
+
 ## CLI
 
 ```
@@ -120,6 +137,7 @@ Examples:
   search-notes "tags:stuart -france"   negate term
   search-notes "tags:stuart +france"   boolean AND
   search-notes "britain^2 france^1"    boost term relevance
+  search-notes "linksTo:filename"      incoming links
   search-notes -w                      re-index folder and save cache to disk
   search-notes -c index.json query     specify index cache file
 ```
@@ -181,10 +199,15 @@ Search took 0.021347405 seconds
 
 - [x] index/reindex command
 - [x] search command
+- [x] index links between notes (`"linksTo:somewhere.md linkedFrom:elsewhere.md"`)
+- [ ] backlink visualizer (node graph)
+  - [ ] static output
+  - [ ] web page output
+  - [ ] filter-then-display
+  - [ ] use mermaid-cli
 - [ ] index nested folders
 - [ ] more sensible search defaults (see elasticlunr)
 - [ ] more output formatting options
-- [ ] index links between notes (`"linksTo:somewhere.md linkedFrom:elsewhere.md"`)
 - [ ] print snippet of file around hits (like `grep -n`)
 - [ ] add more remarkable plugins out of the box (LaTeX formula rendering, etc)
 - [ ] extract core modules from CLI, to enable re-use
@@ -193,11 +216,9 @@ Search took 0.021347405 seconds
 - [ ] incremental index update (not supported by lunr)
 - [ ] command to set up git to treat index file as binary (see .gitattributes)
 - [ ] webcomponent for embedding search in markdown
+- [ ] add .searchignore file
+- [ ] add json output mode
 - [ ] numeric data types for metadata ("rating > 4") _hard_
-- [ ] backlink visualizer (node graph)
-  - [ ] static output
-  - [ ] web page output
-  - [ ] filter-then-display
 - [ ] package as a binary instead of nodejs library
   - [ ] electron app that acts as a container for background processes and wraps CLI
 

@@ -1,0 +1,18 @@
+flowchart LR;
+    james-stuart.md -.- '#pretender';
+    prince-charlie.md --> james-stuart.md;
+    prince-charlie.md -.- '#stuart';
+    prince-charlie.md -.- '#royal';
+    prince-charlie.md -.- '#scotland';
+    prince-charlie.md -.- '#france';
+    prince-charlie.md -.- '#pretender';
+    queen-anne.md -.- '#stuart';
+    queen-anne.md -.- '#royal';
+    queen-anne.md -.- '#britain';
+    queen-anne.md -.- '#scotland';
+    subgraph Famous Scots
+      william-wallace.md([William Wallace]);
+      queen-anne.md([Queen Anne]);
+      james-stuart.md([James Stuart]);
+      prince-charlie.md([Bonnie Prince Charlie]);
+    end
