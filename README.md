@@ -27,11 +27,13 @@ Search took 0.017599736 seconds
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Install](#install)
 - [Features](#features)
   - [Metadata search](#metadata-search)
   - [Tag search](#tag-search)
   - [Link search](#link-search)
+  - [Graphing Relations](#graphing-relations)
 - [CLI](#cli)
   - [Caching the search index](#caching-the-search-index)
     - [Without Cache](#without-cache)
@@ -105,6 +107,69 @@ search-notes -d test/notes "linksTo:SomePage"
 search-notes -d test/notes "linksTo:\*"
 ```
 
+### Graphing Relations
+
+The `--graph` (`-g`) option produces a [Mermaid](https://github.com/mermaid-js/mermaid) diagram of the entity relationships in your files. Right now this is tags and links.
+
+```
+search-notes --graph
+```
+
+```mermaid
+flowchart LR;
+
+	'james-stuart.md'(["James Francis Edward Stuart"]) --> 'pretender.md'
+	tags_pretender[#pretender] -.- 'james-stuart.md'(["James Francis Edward Stuart"])
+
+	tags_pretender[#pretender] -.- 'pretender.md'(["pretender.md"])
+
+	'prince-charlie.md'(["Bonnie Prince Charlie"]) --> 'james-stuart.md'
+	'prince-charlie.md'(["Bonnie Prince Charlie"]) --> 'pretender.md'
+	tags_stuart[#stuart] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_royal[#royal] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_scotland[#scotland] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_france[#france] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_monarch[#monarch] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_highlands[#highlands] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_pretender[#pretender] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+
+	tags_stuart[#stuart] -.- 'queen-anne.md'(["Queen Anne"])
+	tags_royal[#royal] -.- 'queen-anne.md'(["Queen Anne"])
+	tags_britain[#britain] -.- 'queen-anne.md'(["Queen Anne"])
+
+
+subgraph Tags
+		tags_pretender[#pretender]
+		tags_pretender[#pretender]
+		tags_stuart[#stuart]
+		tags_royal[#royal]
+		tags_scotland[#scotland]
+		tags_france[#france]
+		tags_monarch[#monarch]
+		tags_highlands[#highlands]
+		tags_pretender[#pretender]
+		tags_stuart[#stuart]
+		tags_royal[#royal]
+		tags_britain[#britain]
+end
+```
+
+You can turn the chart into an image or PDF using Mermaid's CLI.
+
+If you have `@mermaid-js/mermaid-cli` installed globally:
+
+```
+search-notes --graph > graph.mmd | mmdc -i graph.mmd -o graph.png
+```
+
+If you have `npx`:
+
+```
+search-notes --graph > graph.mmd | npx -p @mermaid-js/mermaid-cli mmdc -i graph.mmd -o graph.png
+```
+
+![graph](./test/notes/graph.png)
+
 ## CLI
 
 ```
@@ -138,6 +203,7 @@ Examples:
   search-notes "tags:stuart +france"   boolean AND
   search-notes "britain^2 france^1"    boost term relevance
   search-notes "linksTo:filename"      incoming links
+  search-notes --graph                 create node graph in mmd format
   search-notes -w                      re-index folder and save cache to disk
   search-notes -c index.json query     specify index cache file
 ```
@@ -200,28 +266,31 @@ Search took 0.021347405 seconds
 - [x] index/reindex command
 - [x] search command
 - [x] index links between notes (`"linksTo:somewhere.md linkedFrom:elsewhere.md"`)
-- [ ] backlink visualizer (node graph)
-  - [ ] static output
+- [x] backlink visualizer (node graph)
+  - [x] static output
+  - [x] use mermaid-cli
   - [ ] web page output
   - [ ] filter-then-display
-  - [ ] use mermaid-cli
 - [ ] index nested folders
+- [ ] add package version to the cache file to verify compatibility
 - [ ] more sensible search defaults (see elasticlunr)
 - [ ] more output formatting options
-- [ ] print snippet of file around hits (like `grep -n`)
+  - [ ] add json output mode
+  - [ ] print snippet of file around hits (like `grep -n`)
 - [ ] add more remarkable plugins out of the box (LaTeX formula rendering, etc)
 - [ ] extract core modules from CLI, to enable re-use
+- [ ] extract filesystem metadata and index that
+- [ ] use filesystem modification times to suggest rebuilding cache file
 - [ ] background process for watching file changes and reindexing
 - [ ] server for viewing & browsing rendered notes, with search embed
 - [ ] incremental index update (not supported by lunr)
 - [ ] command to set up git to treat index file as binary (see .gitattributes)
 - [ ] webcomponent for embedding search in markdown
 - [ ] add .searchignore file
-- [ ] add json output mode
 - [ ] numeric data types for metadata ("rating > 4") _hard_
 - [ ] package as a binary instead of nodejs library
   - [ ] electron app that acts as a container for background processes and wraps CLI
-- [ ] consider re-licensing
+- [ ] consider re-licensing as something other than basic MIT
 
 ## License
 

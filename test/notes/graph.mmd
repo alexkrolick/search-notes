@@ -1,18 +1,36 @@
 flowchart LR;
-    james-stuart.md -.- '#pretender';
-    prince-charlie.md --> james-stuart.md;
-    prince-charlie.md -.- '#stuart';
-    prince-charlie.md -.- '#royal';
-    prince-charlie.md -.- '#scotland';
-    prince-charlie.md -.- '#france';
-    prince-charlie.md -.- '#pretender';
-    queen-anne.md -.- '#stuart';
-    queen-anne.md -.- '#royal';
-    queen-anne.md -.- '#britain';
-    queen-anne.md -.- '#scotland';
-    subgraph Famous Scots
-      william-wallace.md([William Wallace]);
-      queen-anne.md([Queen Anne]);
-      james-stuart.md([James Stuart]);
-      prince-charlie.md([Bonnie Prince Charlie]);
-    end
+
+	'james-stuart.md'(["James Francis Edward Stuart"]) --> 'pretender.md'
+	tags_pretender[#pretender] -.- 'james-stuart.md'(["James Francis Edward Stuart"])
+
+	tags_pretender[#pretender] -.- 'pretender.md'(["pretender.md"])
+
+	'prince-charlie.md'(["Bonnie Prince Charlie"]) --> 'james-stuart.md'
+	'prince-charlie.md'(["Bonnie Prince Charlie"]) --> 'pretender.md'
+	tags_stuart[#stuart] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_royal[#royal] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_scotland[#scotland] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_france[#france] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_monarch[#monarch] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_highlands[#highlands] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+	tags_pretender[#pretender] -.- 'prince-charlie.md'(["Bonnie Prince Charlie"])
+
+	tags_stuart[#stuart] -.- 'queen-anne.md'(["Queen Anne"])
+	tags_royal[#royal] -.- 'queen-anne.md'(["Queen Anne"])
+	tags_britain[#britain] -.- 'queen-anne.md'(["Queen Anne"])
+
+
+subgraph Tags
+		tags_pretender[#pretender]
+		tags_pretender[#pretender]
+		tags_stuart[#stuart]
+		tags_royal[#royal]
+		tags_scotland[#scotland]
+		tags_france[#france]
+		tags_monarch[#monarch]
+		tags_highlands[#highlands]
+		tags_pretender[#pretender]
+		tags_stuart[#stuart]
+		tags_royal[#royal]
+		tags_britain[#britain]
+end
