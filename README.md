@@ -221,6 +221,7 @@ Search took 0.021347405 seconds
 - [ ] numeric data types for metadata ("rating > 4") _hard_
 - [ ] package as a binary instead of nodejs library
   - [ ] electron app that acts as a container for background processes and wraps CLI
+- [ ] consider re-licensing
 
 ## License
 
