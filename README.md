@@ -27,20 +27,20 @@ Search took 0.017599736 seconds
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [Install](#install)
-- [Features](#features)
-  - [Metadata search](#metadata-search)
-  - [Tag search](#tag-search)
-  - [Link search](#link-search)
-  - [Graphing Relations](#graphing-relations)
-- [CLI](#cli)
-  - [Caching the search index](#caching-the-search-index)
-    - [Without Cache](#without-cache)
-    - [With Cache](#with-cache)
-    - [Using the --write-cache (-w) flag](#using-the---write-cache--w-flag)
-- [TODO](#todo)
-- [License](#license)
+- [search-notes](#search-notes)
+  - [Install](#install)
+  - [Features](#features)
+    - [Metadata search](#metadata-search)
+    - [Tag search](#tag-search)
+    - [Link search](#link-search)
+    - [Graphing Relations](#graphing-relations)
+  - [CLI](#cli)
+    - [Caching the search index](#caching-the-search-index)
+      - [Without Cache](#without-cache)
+      - [With Cache](#with-cache)
+      - [Using the --write-cache (-w) flag](#using-the---write-cache--w-flag)
+  - [TODO](#todo)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -291,6 +291,7 @@ Search took 0.021347405 seconds
 - [ ] package as a binary instead of nodejs library
   - [ ] electron app that acts as a container for background processes and wraps CLI
 - [ ] consider re-licensing as something other than basic MIT
+- [ ] some sort of handling for daily notes/bullet journaling
 
 ## License
 
